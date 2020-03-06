@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Carte.h
+string
+-
+iostream
+-
+
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Joueur.h
+string
+-
+vector
+-
+Carte.h
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Carte.h
+
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Partie.h
+Joueur.h
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Joueur.h
+Carte.h
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Carte.h
+
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/main.cpp
+Partie.h
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Partie.h
+Carte.h
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Carte.h
+ctime
+-
+
