@@ -176,6 +176,33 @@ Joueur.cpp.s:
 	$(MAKE) -f CMakeFiles\Labo_3_7Familles.dir\build.make CMakeFiles/Labo_3_7Familles.dir/Joueur.cpp.s
 .PHONY : Joueur.cpp.s
 
+MeilleurJoueur.obj: MeilleurJoueur.cpp.obj
+
+.PHONY : MeilleurJoueur.obj
+
+# target to build an object file
+MeilleurJoueur.cpp.obj:
+	$(MAKE) -f CMakeFiles\Labo_3_7Familles.dir\build.make CMakeFiles/Labo_3_7Familles.dir/MeilleurJoueur.cpp.obj
+.PHONY : MeilleurJoueur.cpp.obj
+
+MeilleurJoueur.i: MeilleurJoueur.cpp.i
+
+.PHONY : MeilleurJoueur.i
+
+# target to preprocess a source file
+MeilleurJoueur.cpp.i:
+	$(MAKE) -f CMakeFiles\Labo_3_7Familles.dir\build.make CMakeFiles/Labo_3_7Familles.dir/MeilleurJoueur.cpp.i
+.PHONY : MeilleurJoueur.cpp.i
+
+MeilleurJoueur.s: MeilleurJoueur.cpp.s
+
+.PHONY : MeilleurJoueur.s
+
+# target to generate assembly for a file
+MeilleurJoueur.cpp.s:
+	$(MAKE) -f CMakeFiles\Labo_3_7Familles.dir\build.make CMakeFiles/Labo_3_7Familles.dir/MeilleurJoueur.cpp.s
+.PHONY : MeilleurJoueur.cpp.s
+
 Partie.obj: Partie.cpp.obj
 
 .PHONY : Partie.obj
@@ -245,6 +272,9 @@ help:
 	@echo ... Joueur.obj
 	@echo ... Joueur.i
 	@echo ... Joueur.s
+	@echo ... MeilleurJoueur.obj
+	@echo ... MeilleurJoueur.i
+	@echo ... MeilleurJoueur.s
 	@echo ... Partie.obj
 	@echo ... Partie.i
 	@echo ... Partie.s

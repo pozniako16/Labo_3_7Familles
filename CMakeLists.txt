@@ -14,4 +14,6 @@ add_executable(Labo_3_7Familles
         Partie.cpp
         Partie.h
         Constantes.h
+        MeilleurJoueur.cpp
+        MeilleurJoueur.h
         )

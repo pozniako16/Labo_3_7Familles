@@ -97,6 +97,12 @@
 		<Unit filename="C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Joueur.h">
 			<Option target="Labo_3_7Familles"/>
 		</Unit>
+		<Unit filename="C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/MeilleurJoueur.cpp">
+			<Option target="Labo_3_7Familles"/>
+		</Unit>
+		<Unit filename="C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/MeilleurJoueur.h">
+			<Option target="Labo_3_7Familles"/>
+		</Unit>
 		<Unit filename="C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Partie.cpp">
 			<Option target="Labo_3_7Familles"/>
 		</Unit>

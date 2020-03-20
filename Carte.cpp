@@ -5,7 +5,6 @@
 #include "Carte.h"
 
 #define ASCII_CAPS_CAR 64
-#define ASCII_NUM_CHAR 48
 
 using namespace std;
 
@@ -15,26 +14,18 @@ ostream& operator<<(ostream &flux, Carte const& rhs) {
     return flux;
 }
 
-bool operator==(Carte const& lhs, Carte const& rhs){
+bool operator==(const Carte& lhs, const Carte& rhs){
     return (lhs.famille == rhs.famille and lhs.membre == rhs.membre);
 }
 
-Carte::Carte(const ushort famille, const ushort membre): membre(membre), famille(famille){
-    //A REVOIR AVEC VARIABLES STATIQUES
-}
+Carte::Carte(const ushort famille, const ushort membre): membre(membre),
+        famille(famille){}
 
 Carte& Carte::operator=(Carte const &rhs) {
     //affectation membre à membre
     this->membre = rhs.membre;
     this->famille = rhs.famille;
     return *this;
-}
-
-string Carte::toString() const {
-    string s;
-    s += (char) ASCII_NUM_CHAR + famille;
-    s += (char) ASCII_CAPS_CAR + membre;
-    return s;
 }
 
 ushort Carte::getFamille() const {return famille;}

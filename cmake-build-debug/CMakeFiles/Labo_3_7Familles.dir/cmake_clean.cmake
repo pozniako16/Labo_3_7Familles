@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Labo_3_7Familles.dir/Carte.cpp.obj"
   "CMakeFiles/Labo_3_7Familles.dir/Joueur.cpp.obj"
   "CMakeFiles/Labo_3_7Familles.dir/Partie.cpp.obj"
+  "CMakeFiles/Labo_3_7Familles.dir/MeilleurJoueur.cpp.obj"
   "Labo_3_7Familles.pdb"
   "Labo_3_7Familles.exe"
   "Labo_3_7Familles.exe.manifest"

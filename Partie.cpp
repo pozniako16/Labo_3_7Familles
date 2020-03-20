@@ -3,182 +3,150 @@
 //
 
 #include "Partie.h"
-#include "Constantes.h"
-
 #include <vector>
+#include <iomanip>
 #include <algorithm>
 #include <string>
 #include <ctime>
-
+#include <numeric>
 
 using namespace std;
 
-Partie::Partie() {
-    turn = 0;//initialise le tour courant à 0 (partie pas commencée)
-    //Creation de la pioche
-
-    remplitPioche();
-    initfamillesDipos();
-    //création des joueurs
-    for(string name: NOMS_JOUEURS){
-        Joueur j(name);
-        players.push_back(j);
-    }
-    //distribution des cartes
-    distribCarte();
-}
-
-void Partie::initfamillesDipos() {
-    vector<ushort> availableFamiliesTemp;
-    for(ushort famille = 1; famille <= NBR_FAMILLES; famille++)
-        availableFamiliesTemp.push_back(famille);
-    availableFamilies = availableFamiliesTemp;
-
+Partie::Partie(bool affichage, bool changerJoueur, size_t nbrFamilles, size_t nbrMembres,
+        vector<string> nomJoueur) : affichage(affichage),  NOMS_JOUEURS(nomJoueur),
+        changerJoueurChaquePartie(changerJoueur),
+   NBR_FAMILLES(nbrFamilles), NBR_MEMBRES(nbrMembres) {
+   //création des joueurs
+   for (string name : NOMS_JOUEURS) {
+      Joueur j(name);
+      joueurs.push_back(j);
+   }
 }
 
 void Partie::remplitPioche() {
-    //On ajoute tous les membres de toutes les familles
-    for (ushort famille = 1; famille <= NBR_FAMILLES; ++famille) {
-        for (ushort membre = 1; membre <= NBR_MEMBRES; ++membre) {
-            Carte c(famille, membre);
-            pioche.push_back(c);
-        }
-    }
-    random_shuffle(pioche.begin(), pioche.end());
+   //On ajoute tous les membres de toutes les familles
+   for (ushort famille = 1; famille <= NBR_FAMILLES; ++famille) {
+      for (ushort membre = 1; membre <= NBR_MEMBRES; ++membre) {
+         Carte c(famille, membre);
+         pioche.push_back(c);
+      }
+   }
+   random_shuffle(pioche.begin(), pioche.end());
 }
 
-void Partie::distribCarte(){
-    //pioche successive pour avoir suffisemment de carte pour faire une famille
-    for(size_t i = 0; i < NBR_MEMBRES; i++)
-        for(Joueur& j: players)
-            j.piocherCarte(pioche);
-
-
+void Partie::distribCarte() {
+   //pioche successive pour avoir suffisemment de carte pour faire une famille
+   for (size_t i = 0; i < NBR_MEMBRES; i++)
+      for (Joueur& j : joueurs)
+         j.piocherCarte(pioche);
 }
 
-void Partie::show(){
-    //Affichage des joueurs
-    for(Joueur j: players)
-        cout << j << endl;
-    //Affichage de la pioche
-    cout << "Pioche: ";
-    for (Carte c: pioche)
-        cout << c << " ";
-    cout << "\n";
-
+void Partie::show() {
+   //Affichage des joueurs
+   for (Joueur j : joueurs)
+      cout << j << endl;
+   //Affichage de la pioche
+   cout << "Pioche: ";
+   for (Carte c : pioche)
+      cout << c << " ";
+   cout << endl;
 }
 
-void Partie::simulateRound(bool affichage) {
-    string s;
-    //affichage de l'état de la partie
-    if (affichage)
-        show();
-    size_t playerCount = 0;//compteur de joueur
+Joueur& Partie::joueurCible(const Joueur& joueurActuel) {
+   vector<size_t> joueursValide;
+   for (size_t i = 0; i < joueurs.size(); i++) {
+      if (!(joueurs[i] == joueurActuel) && joueurs[i].aCarte()) {
+         joueursValide.push_back(i);
+      }
+   }
+   return joueurs[joueursValide[rand() % joueursValide.size()]];
+}
 
-    //boucle sur les joueurs pour gérer le tour par tour
-    for (Joueur& j: players){
-        //vérifie que la partie n'est pas fini
-        //peut arriver que la partie soit terminer et le jeu continue de tourner
-        if(!gameDone()) {
-            size_t toAskCardTo = 0;
-            //choix random de joueur à qui demander
-            do {
-                //pour ne pas se demander une carte à soit meme
-                toAskCardTo = (playerCount + rand() % NBR_JOUEUR) % players.size();
-
-                //on verifie que le joueur cible a des cartes
-            } while (!players.at(toAskCardTo).aCarte());
-
-            //sélection d'une carte
-            Carte toAsk = j.demanderCarte(availableFamilies);
-            //if(j == BEST_PLAYER)
-            //toAsk = j.demanderCarteBestPlayer(availableFamilies);
-            s +=  j.getNom() + " demande a " + players.at(toAskCardTo).getNom() + " la carte " + toAsk.toString() + "\n";
-
-            //si la cible n'a pas la carte
-            if (!players.at(toAskCardTo).aLaCarte(toAsk)) {
-                s += "  Mais " + players.at(toAskCardTo).getNom() + " ne l'a pas. \n";
-                //on verifier que la pioche n'est pas vide
-                if (!pioche.empty()) {
-                    //on pioche
-                    s += j.getNom() + " prends la carte (" + pioche.back().toString() + ") dans la pioche\n";
-                    j.piocherCarte(this->pioche);
-                }
-
-                //si la cible a la carte
+void Partie::nouveauTour() {
+   //affichage de l'état de la partie
+   if (affichage)
+      show();
+   
+   //boucle sur les joueurs pour gérer le tour par tour
+   for (Joueur& j : joueurs) {
+      if (!partieFinie() && j.aCarte()) {
+         Joueur& cible(joueurCible(j));
+         //sélection d'une carte
+         bool priseOK;
+         do {
+            Carte carteSouhaitee = j.carteADemander(familleDisponible, NBR_MEMBRES);
+            if (affichage)
+               cout << j.getNom() << " demande a " << cible.getNom() << " la carte "
+               << carteSouhaitee << endl;
+            priseOK = j.prendsCarteA(carteSouhaitee, cible);
+            if (priseOK) {
+               j.detecterFamilleComplete(familleDisponible, carteSouhaitee, NBR_MEMBRES);
+               if (affichage)
+                  cout << "  et " << cible.getNom() << " donne la carte a "
+                  << j.getNom() << endl;
             } else {
-                s += "  et " + j.getNom() + " prends la carte a " + players.at(toAskCardTo).getNom() + "\n";
-                //on prends la carte au joueur cible
-                j.prendsCarteA(toAsk, players.at(toAskCardTo));
+               if (affichage)
+                  cout << "  mais " << cible.getNom() << " ne l'a pas." << endl;
+               if (!pioche.empty()) {
+                  if (affichage)
+                     cout << j.getNom() << " prend une carte dans la pioche ("
+                     << pioche.back() << ')' << endl;
+                  j.detecterFamilleComplete(familleDisponible, j.piocherCarte(pioche), NBR_MEMBRES);
+               }
             }
-            //verification si on a une famille complète
-            j.detecterFamille(availableFamilies);
-            playerCount++;
-        }
-    }
-    s += "\n";
-    if(affichage)
-        cout << s;
-
+         } while (priseOK && j.aCarte());
+      }
+   }
+   if (affichage)
+      cout << endl;
 }
 
-void Partie::simulate(bool affichage){
-    //simule une partie
-    while (!this->gameDone()){
-        ++this->turn;
-        if(affichage)
-            cout << "\n*** Tour " << turn << " ***" << endl;
-        simulateRound(affichage);
-
-    }
-    if(affichage) {
-        cout << "\n*** Tour " << --turn << " ***" << endl;
-        show();
-        cout << "Partie finie !\n";
-    }
+unsigned Partie::lancerPartie() {
+   //simule une partie
+   while (!(this->partieFinie())) {
+      if (affichage)
+         cout << "\n*** Tour " << noTourCourant << " ***" << endl;
+      ++noTourCourant;
+      nouveauTour();
+   }
+   
+   for (Joueur& j : joueurs) {
+      j.affectationPoint(j.getPoints(NBR_MEMBRES));
+   }
+   
+   if (affichage) {
+      cout << "\n*** Tour " << noTourCourant << " ***" << endl;
+      show();
+      cout << "Partie finie !\n";
+   }
+   
+   if (changerJoueurChaquePartie)
+      rotate(joueurs.begin(), joueurs.begin() + 1, joueurs.end());
+   return noTourCourant;
 }
 
-bool Partie::gameDone() {
-    if(pioche.size() != 0)
-        return false;
-    for(Joueur j: players)
-        if(j.aCarte())
-            return false;
-    return true;
+bool Partie::partieFinie() {
+   return familleDisponible.empty();
 }
 
-void Partie::resetGame() {
-    initfamillesDipos();
-    for(Joueur& j: players)
-        j.viderCartes();
-
-    remplitPioche();
-    distribCarte();
-    //mélange les joueurs pour égaliser les chances sur plusieurs parties
-    //random_shuffle(players.begin(), players.end());
-    turn = 0;
+void Partie::initialiserPartie() {
+   familleDisponible.resize(NBR_FAMILLES);
+   iota(familleDisponible.begin(), familleDisponible.end(), 1);
+   for (Joueur& j : joueurs)
+      j.viderCartes();
+   remplitPioche();
+   distribCarte();
+   //mélange les joueurs pour égaliser les chances sur plusieurs parties
+   //random_shuffle(players.begin(), players.end());
+   noTourCourant = 0;
 }
 
-void Partie::winner(){
-    size_t winnerIndex = 0;
-    size_t currentPlayer = 0;
-    size_t familleMax = 0;
-    for (Joueur j: players) {
-        if (j.getCartesSurTable().size() > familleMax) {
-            familleMax = j.getCartesSurTable().size();
-            winnerIndex = currentPlayer;
-        }
-        currentPlayer++;
-
-    }
-    players.at(winnerIndex).aGagne();
+void Partie::afficherScoresFinaux(size_t nbPartie) {
+   cout << "Score sur " << nbPartie << " partie" << (nbPartie > 1 ? "s." : ".") << endl << endl;
+   for (Joueur j : joueurs) {
+      cout << j.getNom() << " a gagne " << j.getNbVictoire() << " fois.";
+      cout << fixed << setprecision(3) << " (" <<
+              (double) j.getNbVictoire() / (NBR_FAMILLES * nbPartie) * 100
+              << "%)" << endl;
+   }
 }
-
-void Partie::showFinalScore(){
-    for(Joueur j:players)
-        cout << j.getNom() << ", wins: " << j.getwins()<< endl;
-}
-
-
-
-

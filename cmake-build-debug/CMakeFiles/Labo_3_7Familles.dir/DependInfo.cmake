@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Carte.cpp" "C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/cmake-build-debug/CMakeFiles/Labo_3_7Familles.dir/Carte.cpp.obj"
   "C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Joueur.cpp" "C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/cmake-build-debug/CMakeFiles/Labo_3_7Familles.dir/Joueur.cpp.obj"
+  "C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/MeilleurJoueur.cpp" "C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/cmake-build-debug/CMakeFiles/Labo_3_7Familles.dir/MeilleurJoueur.cpp.obj"
   "C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Partie.cpp" "C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/cmake-build-debug/CMakeFiles/Labo_3_7Familles.dir/Partie.cpp.obj"
   "C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/main.cpp" "C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/cmake-build-debug/CMakeFiles/Labo_3_7Familles.dir/main.cpp.obj"
   )

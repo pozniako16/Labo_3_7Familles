@@ -3,25 +3,29 @@
 //
 #include "Partie.h"
 #include "Carte.h"
+#include "Joueur.h"
 #include <ctime>
-
 
 using namespace std;
 
-int main(){
+int main() {
+   srand(time(NULL));
+   const bool AFFICHAGE = false;
+   const bool CHANGER_JOUEUR = true;
+   const size_t NB_PARTIE = 1000;
 
-    srand(time(NULL));
+   const size_t NBR_FAMILLES = 9;
+   const size_t NBR_MEMBRES = 5;
+   
+   unsigned nbTour = 0;
 
+   Partie p(AFFICHAGE, CHANGER_JOUEUR, NBR_FAMILLES, NBR_MEMBRES,{"Alice", "Bobby", "Carol", "Danny"});
 
-
-    Partie p;
-
-    for(size_t partie = 0; partie < 100; partie++) {
-        p.simulate(false);
-        p.winner();
-        p.resetGame();
-    }
-    p.showFinalScore();
-
-    return EXIT_SUCCESS;
+   for (size_t partie = 0; partie < NB_PARTIE; partie++) {
+      p.initialiserPartie();
+      nbTour += p.lancerPartie();
+   }
+   p.afficherScoresFinaux(NB_PARTIE);
+   cout << "Nb Tour moyen : " << (double)nbTour / NB_PARTIE << endl;
+   return EXIT_SUCCESS;
 }

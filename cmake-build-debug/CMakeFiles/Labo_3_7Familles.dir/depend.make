@@ -5,12 +5,15 @@ CMakeFiles/Labo_3_7Familles.dir/Carte.cpp.obj: ../Carte.cpp
 CMakeFiles/Labo_3_7Familles.dir/Carte.cpp.obj: ../Carte.h
 
 CMakeFiles/Labo_3_7Familles.dir/Joueur.cpp.obj: ../Carte.h
-CMakeFiles/Labo_3_7Familles.dir/Joueur.cpp.obj: ../Constantes.h
 CMakeFiles/Labo_3_7Familles.dir/Joueur.cpp.obj: ../Joueur.cpp
 CMakeFiles/Labo_3_7Familles.dir/Joueur.cpp.obj: ../Joueur.h
 
+CMakeFiles/Labo_3_7Familles.dir/MeilleurJoueur.cpp.obj: ../Carte.h
+CMakeFiles/Labo_3_7Familles.dir/MeilleurJoueur.cpp.obj: ../Joueur.h
+CMakeFiles/Labo_3_7Familles.dir/MeilleurJoueur.cpp.obj: ../MeilleurJoueur.cpp
+CMakeFiles/Labo_3_7Familles.dir/MeilleurJoueur.cpp.obj: ../MeilleurJoueur.h
+
 CMakeFiles/Labo_3_7Familles.dir/Partie.cpp.obj: ../Carte.h
-CMakeFiles/Labo_3_7Familles.dir/Partie.cpp.obj: ../Constantes.h
 CMakeFiles/Labo_3_7Familles.dir/Partie.cpp.obj: ../Joueur.h
 CMakeFiles/Labo_3_7Familles.dir/Partie.cpp.obj: ../Partie.cpp
 CMakeFiles/Labo_3_7Familles.dir/Partie.cpp.obj: ../Partie.h

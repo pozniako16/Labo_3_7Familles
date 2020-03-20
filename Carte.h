@@ -27,10 +27,6 @@ class Carte {
      */
     friend bool operator==(Carte const& lhs, Carte const& rhs);
 
-private:
-    ushort famille;
-    ushort membre;
-
 public:
 
     /**
@@ -58,10 +54,10 @@ public:
      * @return une référence au nouveau membre
      */
     Carte& operator=(Carte const& rhs);
-
-    std::string toString() const;
-
-
+      
+private:
+    ushort famille;
+    ushort membre;
 
 };
 

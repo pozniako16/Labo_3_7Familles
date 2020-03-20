@@ -7,73 +7,73 @@
 #include "Joueur.h"
 #include "Carte.h"
 
-
 class Partie {
-
 private:
 
-    std::vector<Carte> pioche;
-    std::vector<Joueur> players;
-    std::vector<ushort> availableFamilies; //familles disponibls
-    unsigned int turn; //tour courant
+   std::vector<Carte> pioche;
+   std::vector<Joueur> joueurs;
+   std::vector<ushort> familleDisponible;
+   bool affichage;
+   bool changerJoueurChaquePartie;
+   unsigned noTourCourant;
+   const size_t NBR_FAMILLES;
+   const size_t NBR_MEMBRES;
+   const std::vector<std::string> NOMS_JOUEURS;
+   
 
 public:
 
+   /**
+    * Constructeur
+    */
+   Partie(bool affichage,bool changerJoueur, size_t nbrFamilles, size_t nbrMembres, std::vector<std::string> nomJoueur);
+   
+   /**
+    * @brief vide puis remplit la pioche de cartes
+    */
+   void remplitPioche();
 
-    /**
-     * Constructeur
-     */
-    Partie();
+   /**
+    * @brief distribues des cartes aux joueurs
+    */
+   void distribCarte();
 
-    /**
-     * @brief vide puis remplit la pioche de cartes
-     */
-    void remplitPioche();
+   /**
+    * @brief Affiche le tour courrant
+    */
+   void show();
 
-    /**
-     * @brief distribues des cartes aux joueurs
-     */
-    void distribCarte();
+   Joueur& joueurCible(const Joueur& joueurActuel);
 
-    void initfamillesDipos();
+   /**
+    * @brief simule un tour
+    */
+   void nouveauTour();
 
-    /**
-     * @brief Affiche le tour courrant
-     */
-    void show();
+   /**
+    * @brief simule une partie
+    */
+   unsigned lancerPartie();
 
-    /**
-     * @brief simule un tour
-     */
-    void simulateRound(bool affichage);
+   /**
+    * @brief verifie que la partie est finie
+    * @return true si la pioche est vide et que les joueurs n'ont plus de cartes
+    * false sinon
+    */
+   bool partieFinie();
 
-    /**
-     * @brief simule une partie
-     */
-    void simulate(bool affichage);
+   /**
+    * @brief: réinitialise une partie
+    *   - vide les mains des joueurs
+    *   - vide la pioche
+    *   - re remplit la pioche
+    *   - distribue les cartes
+    */
+   void initialiserPartie();
 
+   void gagnant();
 
-
-
-    /**
-     * @brief verifie que la partie est finie
-     * @return true si la pioche est vide et que les joueurs n'ont plus de cartes
-     * false sinon
-     */
-    bool gameDone();
-
-    /**
-     * @brief: réinitialise une partie
-     *   - vide les mains des joueurs
-     *   - vide la pioche
-     *   - re remplit la pioche
-     *   - distribue les cartes
-     */
-    void resetGame();
-
-    void winner();
-
-    void showFinalScore();
+   void afficherScoresFinaux(size_t nbPartie);
 
 
 };

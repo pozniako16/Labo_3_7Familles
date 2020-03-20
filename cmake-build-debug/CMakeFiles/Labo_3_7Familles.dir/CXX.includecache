@@ -6,10 +6,28 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Carte.cpp
+Carte.h
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Carte.h
+
 C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Carte.h
 string
 -
 iostream
+-
+
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Joueur.cpp
+Joueur.h
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Joueur.h
+Carte.h
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Carte.h
+random
+-
+algorithm
+-
+time.h
+-
+vector
 -
 
 C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Joueur.h
@@ -19,6 +37,34 @@ vector
 -
 Carte.h
 C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Carte.h
+
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/MeilleurJoueur.cpp
+MeilleurJoueur.h
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/MeilleurJoueur.h
+string
+-
+iostream
+-
+
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/MeilleurJoueur.h
+Joueur.h
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Joueur.h
+
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Partie.cpp
+Partie.h
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Partie.h
+vector
+-
+iomanip
+-
+algorithm
+-
+string
+-
+ctime
+-
+numeric
+-
 
 C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Partie.h
 Joueur.h
@@ -31,6 +77,8 @@ Partie.h
 C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Partie.h
 Carte.h
 C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Carte.h
+Joueur.h
+C:/Users/Lev/Documents/Cours/INF2/Labo/Labo_3_7Familles/Joueur.h
 ctime
 -
 
